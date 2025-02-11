@@ -1,40 +1,34 @@
-# Nashville Housing Data Cleaning Project
+# 📊 COVID-19 Data Analysis Project  
 
-## Overview
-This project focuses on cleaning and transforming the Nashville Housing dataset using SQL. The dataset contains property sale records, including details like sale dates, property addresses, owner information, and sales prices. By applying various SQL data cleaning techniques, we improve the dataset's quality, making it more structured and suitable for analysis.
+This project explores COVID-19 data using **SQL** to analyze key trends, including infection rates, death rates, and vaccination progress across different countries and continents. The dataset is sourced from **Our World in Data** and is structured in **SQL Server**.  
 
-## Objectives
-- Standardize date formats
-- Populate missing property addresses
-- Split address fields into separate columns (Address, City, State)
-- Standardize categorical values (e.g., converting 'Y' and 'N' to 'Yes' and 'No')
-- Remove duplicate records
-- Delete unnecessary columns
-- Demonstrate data import techniques using `OPENROWSET` and `BULK INSERT`
+## 📌 Project Overview  
+The project aims to answer important questions, such as:  
+✅ What is the likelihood of dying from COVID-19?  
+✅ What percentage of the population was infected in each country?  
+✅ Which countries and continents had the highest infection and death rates?  
+✅ What percentage of the population received at least one vaccine dose?  
 
-## Dataset
-The dataset used in this project is `NashvilleHousing`, stored in the `PortfolioProject.dbo` schema.
+## 🗂️ Dataset Used  
+We use two main tables:  
+- **CovidDeaths** – Contains data on cases, deaths, and population.  
+- **CovidVaccinations** – Contains data on vaccination progress.  
 
-## SQL Cleaning Steps
-### 1. Standardizing Date Format
-Converted the `SaleDate` column to a proper `Date` format using the `CONVERT` function. If direct updates failed, a new column `SaleDateConverted` was added to store the standardized values.
+## 🛠️ SQL Queries and Insights  
+The following SQL queries were used for analysis:  
+- **Total Cases vs Total Deaths** – Calculates the death percentage for each country.  
+- **Total Cases vs Population** – Determines the infection rate per country.  
+- **Highest Infection Rates** – Finds countries with the highest infections compared to their population.  
+- **Highest Death Counts** – Identifies countries and continents with the most COVID-19 deaths.  
+- **Global Trends** – Aggregates worldwide cases, deaths, and fatality rates.  
+- **Vaccination Analysis** – Tracks the percentage of the population that received at least one dose.  
 
-### 2. Populating Missing Property Addresses
-Used self-joins on `ParcelID` to fill in missing `PropertyAddress` values by matching records with the same `ParcelID` but different `UniqueID` values.
+## 🔍 Key SQL Features Used  
+- **Aggregate Functions** (`SUM()`, `MAX()`, `AVG()`)  
+- **Window Functions** (`OVER(PARTITION BY ...)`)  
+- **Joins** (Combining `CovidDeaths` & `CovidVaccinations`)  
+- **CTEs & Temp Tables** for efficient data processing  
+- **Views** for storing data for visualization  
 
-### 3. Splitting Address into Individual Columns
-Extracted `Address` and `City` from `PropertyAddress` using `SUBSTRING` and `CHARINDEX`. For `OwnerAddress`, used `PARSENAME` to separate `Address`, `City`, and `State` values.
-
-### 4. Standardizing Categorical Data
-Converted the `SoldAsVacant` field from 'Y' and 'N' to 'Yes' and 'No' using a `CASE` statement.
-
-### 5. Removing Duplicates
-Implemented `ROW_NUMBER()` with `PARTITION BY` to identify and remove duplicate records based on key attributes like `ParcelID`, `PropertyAddress`, `SalePrice`, `SaleDate`, and `LegalReference`.
-
-### 6. Deleting Unused Columns
-Dropped unnecessary columns such as `OwnerAddress`, `TaxDistrict`, `PropertyAddress`, and `SaleDate` to optimize the dataset.
-
-## Tools & Technologies
-- **SQL Server** (T-SQL)
-- **SQL Server Management Studio (SSMS)**
-
+## 📊 Visualization & Insights  
+The processed data can be used for visualization in **Power BI, Tableau, or Python (Matplotlib/Seaborn)**.  
